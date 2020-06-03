@@ -14,8 +14,6 @@ button.addEventListener('click', () => {
     })
 });
 
-let myKey = 'selim123';
-
 socket.on('chat', (data) => {
     
     if(handler.value === data.sender){

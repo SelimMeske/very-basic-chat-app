@@ -10,11 +10,13 @@
 <body>
     <div class="main container form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <div id="output" style="flex: 1;"></div>
-        <div id="input" class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1;">
-            <div class="flex">Your unique ID: <input type="text" id="handler"></div>
-            <div class="flex">Chat with this unique ID: <input type="text" id="partner"></div>
-            <input type="text" id="message">
-            <button class="btn btn-primary" type="button" id="button">Send Message</button>
+        <div id="input" class="flex" style="flex: 1; flex-direction: column;">
+            <strong>Your unique ID :</strong> 
+            <input type="text" id="handler">
+            <strong>Chat with this unique ID :</strong> 
+            <input type="text" id="partner">
+            <input type="text" placeholder="Type a message" id="message">
+            <button class="btn btn-primary" type="button" id="button" >Send Message</button>
         </div>
     </div>
     <script src="chat.js"></script>
@@ -22,16 +24,22 @@
         *{
             padding: 0;
             margin: 0;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+        .btn {
+            border-radius: 10px;
         }
         .flex{
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
         }
         body, .main{
             box-sizing: border-box;
             height: 100vh;
             overflow: hidden;
+            padding-top: 10px;
         }
         #output{
             display: flex;
@@ -42,6 +50,7 @@
             width: 100%;
             height: 100%;
             background: rgb(231, 231, 231);
+            border-radius: 10px;
         }
         #input > *{
             margin-bottom: 1rem;
@@ -55,7 +64,14 @@
             padding: 5px 15px;
             border-radius: 15px;
         }
-        
+        input{
+            border-radius: 15px;
+            border: 1px solid gray;
+            padding: 5px 10px;
+        }
+        input:focus{
+            outline-width: 0;
+        }
     </style>
 </body>
 </html>
