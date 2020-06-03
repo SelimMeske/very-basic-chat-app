@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+</head>
+<body>
+    <div class="main container form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div id="output" style="flex: 1;"></div>
+        <div id="input" class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1;">
+            <div class="flex">Your unique ID: <input type="text" id="handler"></div>
+            <div class="flex">Chat with this unique ID: <input type="text" id="partner"></div>
+            <input type="text" id="message">
+            <button class="btn btn-primary" type="button" id="button">Send Message</button>
+        </div>
+    </div>
+    <script src="chat.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body, .main{
+            box-sizing: border-box;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #output{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            flex-direction: column;
+            overflow-y: auto;
+            width: 100%;
+            height: 100%;
+            background: rgb(231, 231, 231);
+        }
+        #input > *{
+            margin-bottom: 1rem;
+        }
+        #chatMsg{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 10px 10px;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+        }
+        
+    </style>
+</body>
+</html>
