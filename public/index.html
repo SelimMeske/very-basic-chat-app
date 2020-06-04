@@ -8,28 +8,81 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="chat.js"></script>
 </head>
 
 <body>
-    <div class="main container form-group"
-        style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <div id="output" style="flex: 1;"></div>
-        <div id="input" class="flex" style="flex: 1; flex-direction: column;">  
+    <div id="loader"></div>
+    <div id="idGen" class="flex" >
+        <div id="idGenGroup" class="flex" style="flex-direction: column;">
+            <img src="../images/ano.png" alt="">
             <button style="width: 180px;" class="btn btn-success" type="button" id="uniqueId">Copy ID</button>
             <input type="text" id="idField">
             <input type="text" placeholder="Enter ID to chat with." id="partner">
-            <input type="text" placeholder="Type a message" id="message">
-            <button class="btn btn-primary" type="button" id="button">Send Message</button>
+            <button class="btn btn-primary" id="startChat">Start Chatting</button>
         </div>
     </div>
-    <script src="chat.js"></script>
+    <div id="main" class="main container form-group"
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div id="output" style="flex: 6;"></div>
+        <div id="input" class="flex" style="flex: 1; ">  
+            <input type="text" placeholder="Type a message" id="message">
+            <button class="btn btn-primary flex" type="button" id="button"><img src="../images/send.png" alt=""></button>
+        </div>
+    </div>
+    <audio id="newMsg" src="../sounds/msg-sound.mp3"></audio>
+    
     <style>
         * {
             padding: 0;
             margin: 0;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
         }
+        #loader {
+            background: rgb(0, 0, 0);
+            transition-duration: 1s;
+            opacity: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+        
+        #idGen{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            background: url('../images/image.jpg');
+            background-position: center;
+            background-size: cover;
+            overflow: hidden;
+            animation-fill-mode: forwards;
+            animation-duration: 1s;
+        }
 
+        #idGen > .flex > * {
+            margin-bottom: 1rem;
+        }
+        #idGenGroup{
+            opacity: 1;
+            transition-duration: 1s;
+        }
+        #idGen img {
+            max-width: 10rem;
+        }
+        .startAni {
+            animation-name: hideAni;
+        }
+        @keyframes hideAni {
+            0% {width: 100%;}
+            100% {width: 0%;}
+        }
+        
         .uniqueId {
             transition-duration: 1s;
         }
@@ -38,6 +91,14 @@
             border-radius: 15px;
         }
 
+        .btn > img {
+            width: 20px;
+        }
+        #button{
+            width: 35px;
+            height: 35px;
+            border-radius: 100%;
+        }
         .flex {
             display: flex;
             justify-content: center;
@@ -50,7 +111,10 @@
             box-sizing: border-box;
             height: 100vh;
             overflow: hidden;
-            padding-top: 10px;
+        }
+        #main {
+            visibility: hidden;
+            background: black;
         }
 
         #output {
@@ -61,7 +125,7 @@
             overflow-y: auto;
             width: 100%;
             height: 100%;
-            background: rgb(231, 231, 231);
+            background: rgb(0, 0, 0);
             border-radius: 10px;
         }
 
@@ -88,6 +152,25 @@
         input:focus,
         button:focus {
             outline-width: 0;
+        }
+                /* width */
+        ::-webkit-scrollbar {
+        width: 4px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        background: #000000;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: rgb(194, 194, 194);
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #555;
         }
     </style>
 </body>
