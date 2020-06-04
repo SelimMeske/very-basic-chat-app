@@ -6,12 +6,21 @@ let output = document.getElementById('output');
 let message = document.getElementById('message');
 let partner = document.getElementById('partner');
 
+function emitMsg() { socket.emit('chat', {
+    message: message.value,
+    partner: partner.value,
+    sender: handler.value
+})
+}
 button.addEventListener('click', () => {
-    socket.emit('chat', {
-        message: message.value,
-        partner: partner.value,
-        sender: handler.value
-    })
+    emitMsg();
+});
+
+document.addEventListener('keypress', (e) => {
+    let key = e.which;
+    if(key === 13){
+        emitMsg();
+    }
 });
 
 socket.on('chat', (data) => {
