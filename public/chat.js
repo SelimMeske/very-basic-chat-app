@@ -5,6 +5,7 @@ let output = document.getElementById('output');
 let message = document.getElementById('message');
 let partner = document.getElementById('partner');
 let idButton = document.getElementById('uniqueId');
+let idField = document.getElementById('idField');
 
 function clearMessageInput() {
     message.value = '';
@@ -71,4 +72,5 @@ socket.on('mymsg', data => {
 
 socket.on('id', (data) => {
     userId = data;
+    idField.value = data;
 });
